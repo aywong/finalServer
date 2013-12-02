@@ -28,6 +28,7 @@ public class chat extends HttpServlet{
 			resp.setContentType("text/plain");
 			String msg = req.getParameter("newMessage");
 			messages.add(msg);
+			resp.getWriter().write("success!");
 			
 		}
 }
