@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 public class chat extends HttpServlet{
 	
-	ArrayList<String> messages;
+	ArrayList<String> messages = new ArrayList<String>();
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/plain");
