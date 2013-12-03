@@ -35,7 +35,7 @@ public class cli extends HttpServlet{
 		output = " ";
 
 		cmd = req.getParameter("cmd");
-		String update = sendCmd(cmd);
+		String update = sendCmd("dir");
 		
 		if(output == " "){
 			resp.getWriter().write(update);
@@ -74,7 +74,7 @@ public class cli extends HttpServlet{
 			Process proc;
 			
 			if(OSname.contains("Windows")){
-				proc = run.exec("cmd " + inputCmd);
+				proc = run.exec("cmd /c " + inputCmd);
 			}else if (OSname.contains("Mac")){
 				proc = run.exec("/usr/bin/open -a Terminal " + inputCmd);
 			}else proc = run.exec("/usr/bin/xterm " + inputCmd);

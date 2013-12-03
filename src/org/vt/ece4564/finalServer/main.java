@@ -19,6 +19,7 @@ public class main extends HttpServlet{
 
 		WebAppContext context = new WebAppContext();
 		context.setWar("war");
+		context.setResourceBase("./war");
 		context.setContextPath("/");
 		server.setHandler(context);
 

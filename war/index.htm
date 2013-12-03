@@ -1,30 +1,50 @@
 <html>
 <head>
  <title>DataBridge</title>
+ <style>
+.center {
+    width:910px;
+    height:550px;
+    background-color:#EEEEEE;
+    position:fixed;
+    margin-left:-460px; /* half of width */
+    margin-top:-300px;  /* half of height */
+    top:50%;
+    left:50%;
+}
+ </style>
 </head>
 <center>
-<br>
-<font size=10>DataBridge Control Center</font>
-<br>
-<table border="1">
- <tr height="400px">
- <td colspan = 3 width="900px">Desktop Emulator</td>
+<table class="center">
+<tr>
+<td>
+<table border="0">
+ <tr>
+  <th colspan="3"><font size="10">DataBridge Control Center</font></th>
  </tr>
- <tr height="250px">
- <td width="300px">File Browser</td>
+ <tr>
+ <th width="300px">File Browser</th>
+ <th width="300px">Terminal</th>
+ <th width="300px">Chat</th>
+ </tr>
+ <tr>
+ <td width="300px"><iframe src="fb.htm" width="295" height="400"></iframe></td>
+ <td width="300px"><iframe src="cli.htm" width="295" height="400"></iframe></td>
+ <td width="300px"><iframe src="chat.htm" width="295" height="400"></iframe></td>
+ </tr>
+ <tr>
+ <td width="300px"></td>
+ <td width="300px"></td>
  <td width="300px">
-  <iframe src="cli.htm" width="295" height="240"></iframe>
-  <form action="cli" method="get">
+  <form method="post" action="/chat">
+    <input type="text" name="newMessage"/>
+    <input type="submit" value="send"/>
   </form>
  </td>
- <td width="300px">
-  <iframe src="chat.htm" width="295" height="220"></iframe>
-  <form action="chat" method="post">
-    <input type="text" name="serverchat" style="height: 20px; width: 245px"/>
-    <input type="submit" value="send">
-  </form>
- </td>
  </tr>
+</table>
+</td>
+</tr>
 </table>
 </center>
 </html>
