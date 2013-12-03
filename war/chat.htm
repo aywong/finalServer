@@ -1,12 +1,22 @@
 <html>
 <head>
  <title>Chat</title>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script>
+ google.load("visualization", "1", {packages:["corechart", "table"]}); 
+ $(document).ready(function(){
+  doGetChat();
+  setInterval(doGetChat, 1000); });
+  function doGetChat(){ 
+   $.get("/chat", function(data) { alart("data loaded: " + data ) ; });
+ </script>
 </head>
 <body>
 <center>
 <table>
  <tr>
- <td width="290px">
+ <td width="310px">
   <form action="/chat" method="GET">
    <input type="submit" value="Refresh"/>
   </form>
