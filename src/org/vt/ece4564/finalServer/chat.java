@@ -9,32 +9,44 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.PrintWriter;
 
-public class chat extends HttpServlet{
-	
+public class chat extends HttpServlet {
+
 	ArrayList<String> messages = new ArrayList<String>();
+	ArrayList<String> serverMessages = new ArrayList<String>();
 	int index = 0;
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/plain");
 		PrintWriter out = resp.getWriter();
-		if(messages.size() > 0)
-		{
-			while(index<messages.size())
-			{
-				out.write(messages.get(index));
-				index++;
-			}
-			
-		}
-		else
-			out.write("No messages, how did you get here?");
-	}
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
-			resp.setContentType("text/plain");
-			String msg = req.getParameter("newMessage");
-			messages.add(msg);
-			resp.getWriter().write("success!");
+		if(req.getQueryString().equals("app")){			
 			
+			if(serverMessages.size() > 0){
+				
+				while(index<serverMessages.size()){
+					
+					out.write(serverMessages.get(index)+"\n");
+				
+				}
+			}
 		}
+		else{
+			for(int i = 0; i < messages.size()-1;i++)
+			{
+				out.write(messages.get(i) + "\n");
+			}
+		}
+	}
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+
+		resp.setContentType("text/plain");
+		String msg = req.getParameter("newMessage");
+		String sender = req.getParameter("sender");
+		if(!sender.equals("client"))
+			serverMessages.add(msg);
+		messages.add(msg);
+
+	}
 }
