@@ -26,6 +26,7 @@ public class cli extends HttpServlet{
 		//auto reload every 5 seconds
 		resp.setIntHeader("Refresh", 5);
 		
+		//outputs logs
 		if(logs.size() > 0){
 			for(int i = 0; i < logs.size();i++)
 			{
@@ -37,6 +38,7 @@ public class cli extends HttpServlet{
 		resp.setContentType("text/plain");
 		output = " ";
 
+		//run cmd on terminal
 		cmd = req.getParameter("cmd");
 		String update = sendCmd(cmd);
 		
@@ -69,6 +71,7 @@ public class cli extends HttpServlet{
 			Runtime run = Runtime.getRuntime();
 			Process proc;
 			
+			//run different cli, depending on its system
 			if(OSname.contains("Windows")){
 				proc = run.exec("cmd /c " + inputCmd);
 			}else if (OSname.contains("Mac")){
