@@ -31,9 +31,12 @@ public class chat extends HttpServlet {
 			}
 		}
 		else{
-			for(int i = 0; i < messages.size()-1;i++)
-			{
-				out.write(messages.get(i) + "\n");
+			
+			if(messages.size() > 0){
+				for(int i = 0; i < messages.size();i++)
+				{
+					out.write(messages.get(i) + "\n");
+				}
 			}
 		}
 	}
