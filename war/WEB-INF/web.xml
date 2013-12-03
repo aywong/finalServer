@@ -16,15 +16,6 @@ id="WebApp_ID" version="3.0">
 		<servlet-name>main</servlet-name>
 		<url-pattern>/nonce</url-pattern>
 	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>desktop</servlet-name>
-		<servlet-class>org.vt.ece4564.finalServer.desktop</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>desktop</servlet-name>
-		<url-pattern>/desktop</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>cli</servlet-name>
