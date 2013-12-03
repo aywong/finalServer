@@ -2,17 +2,26 @@
 <head>
  <title>DataBridge</title>
  <style>
-.center {
-    width:910px;
+   .center {
+    width:830px;
     height:550px;
     background-color:#EEEEEE;
     position:fixed;
-    margin-left:-460px; /* half of width */
-    margin-top:-300px;  /* half of height */
-    top:50%;
+    margin-left:-325px; /* half of width */
+    margin-top:0px;  /* half of height */
+    top:0%;
     left:50%;
-}
+   }
  </style>
+ <script>
+  $.ajax({
+    url: "",
+    context: document.body,
+    success: function(s,x){
+        $(this).html(s);
+    }
+  });
+ </script>
 </head>
 <center>
 <table class="center">
@@ -20,27 +29,19 @@
 <td>
 <table border="0">
  <tr>
-  <th colspan="3"><font size="10">DataBridge Control Center</font></th>
+  <th colspan="2"><br><font size="10">DataBridge Control Center</font></th>
  </tr>
  <tr>
- <th width="300px">File Browser</th>
- <th width="300px">Terminal</th>
- <th width="300px">Chat</th>
+ <th width="500px">Terminal</th>
+ <th width="320px">Chat</th>
  </tr>
  <tr>
- <td width="300px"><iframe src="fb.htm" width="295" height="400"></iframe></td>
- <td width="300px"><iframe src="cli.htm" width="295" height="400"></iframe></td>
- <td width="300px"><iframe src="chat.htm" width="295" height="400"></iframe></td>
+ <td width="500px"><iframe src="cli.htm" width="495" height="400"></iframe></td>
+ <td width="320px"><iframe src="chat.htm" width="315" height="400"></iframe></td>
  </tr>
  <tr>
- <td width="300px"></td>
- <td width="300px"></td>
- <td width="300px">
-  <form method="post" action="/chat">
-    <input type="text" name="newMessage"/>
-    <input type="submit" value="send"/>
-  </form>
- </td>
+ <td width="500px"></td>
+ <td width="320px"><iframe frameBorder="0" src="post.htm" width="315"></iframe></td>
  </tr>
 </table>
 </td>

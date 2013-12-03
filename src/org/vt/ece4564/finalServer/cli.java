@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,18 +18,20 @@ public class cli extends HttpServlet{
 	
 	String cmd;
 	String output = " ";
-	JSONArray jArray = new JSONArray();
+	ArrayList<String> logs = new ArrayList<String>();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("application/json");
 		
-		try {
-			jArray.write(resp.getWriter());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//auto reload every 5 seconds
+		resp.setIntHeader("Refresh", 5);
+		
+		if(logs.size() > 0){
+			for(int i = 0; i < logs.size();i++)
+			{
+				resp.getWriter().write(logs.get(i) + "\n");
+			}
 		}
-		//resp.getWriter().write(jArray.toString());
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/plain");
@@ -37,23 +40,16 @@ public class cli extends HttpServlet{
 		cmd = req.getParameter("cmd");
 		String update = sendCmd(cmd);
 		
+		logs.add(cmd);
+		
 		if(output == " "){
 			resp.getWriter().write(update);
+			logs.add(update);
 		}else{
 			resp.getWriter().write(output);
+			logs.add(output);
 		}
 		
-		JSONObject jObj = new JSONObject();
-		try {
-			jObj.put("response", output);
-			jObj.put("cmd", cmd);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			resp.getWriter().write(e.getMessage());
-		}
-		
-		jArray.put(jObj);
 	}
 
 	// this method sends the posted cmd to the computers CLI

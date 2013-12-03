@@ -35,15 +35,6 @@ id="WebApp_ID" version="3.0">
 		<url-pattern>/cli</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>filebrowser</servlet-name>
-		<servlet-class>org.vt.ece4564.finalServer.filebrowser</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>filebrowser</servlet-name>
-		<url-pattern>/filebrowser</url-pattern>
-	</servlet-mapping>
-	
 		<servlet>
 		<servlet-name>chat</servlet-name>
 		<servlet-class>org.vt.ece4564.finalServer.chat</servlet-class>

@@ -20,6 +20,8 @@ public class chat extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		
 		if(req.getQueryString()==null){
+			//auto reload every 1 second
+			resp.setIntHeader("Refresh", 1);
 			
 			if(messages.size() > 0){
 				for(int i = 0; i < messages.size();i++)
@@ -43,16 +45,20 @@ public class chat extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
-
-		resp.setContentType("text/plain");
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	    resp.setContentType("text/html");
+	    PrintWriter out = resp.getWriter();
+		
 		String msg = req.getParameter("newMessage");
 		String sender = req.getParameter("sender");
 		if(sender == null){
 			serverMessages.add(msg);
 		}
 		messages.add(msg);
-
+		
+	    out.println("<form method=\"post\" action=\"/chat\">");
+	    out.println("<input type=\"text\" name=\"newMessage\"/>");
+	    out.println("<input type=\"submit\" value=\"send\"/>");
+	    out.println("</form>");
 	}
 }
