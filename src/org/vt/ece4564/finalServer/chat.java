@@ -12,13 +12,19 @@ import java.io.PrintWriter;
 public class chat extends HttpServlet{
 	
 	ArrayList<String> messages = new ArrayList<String>();
+	int index = 0;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/plain");
 		PrintWriter out = resp.getWriter();
 		if(messages.size() > 0)
 		{
-			out.write(messages.get(messages.size()-1));
+			while(index<messages.size())
+			{
+				out.write(messages.get(index));
+				index++;
+			}
+			
 		}
 		else
 			out.write("No messages, how did you get here?");
