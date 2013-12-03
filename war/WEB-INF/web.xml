@@ -15,7 +15,7 @@ id="WebApp_ID" version="3.0">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>main</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/nonce</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
