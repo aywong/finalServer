@@ -19,18 +19,7 @@ public class chat extends HttpServlet {
 		resp.setContentType("text/plain");
 		PrintWriter out = resp.getWriter();
 		
-		if(req.getQueryString().equals("app")){			
-			
-			if(serverMessages.size() > 0){
-				
-				while(index<serverMessages.size()){
-					
-					out.write(serverMessages.get(index)+"\n");
-				
-				}
-			}
-		}
-		else{
+		if(req.getQueryString()==null){
 			
 			if(messages.size() > 0){
 				for(int i = 0; i < messages.size();i++)
@@ -38,6 +27,19 @@ public class chat extends HttpServlet {
 					out.write(messages.get(i) + "\n");
 				}
 			}
+			
+		}
+		else{
+			if(serverMessages.size() > 0){
+				
+				while(index<serverMessages.size()){
+					
+					out.write(serverMessages.get(index)+"\n");
+					index++;
+				
+				}
+			}
+			
 		}
 	}
 
@@ -47,8 +49,9 @@ public class chat extends HttpServlet {
 		resp.setContentType("text/plain");
 		String msg = req.getParameter("newMessage");
 		String sender = req.getParameter("sender");
-		if(!sender.equals("client"))
+		if(sender == null){
 			serverMessages.add(msg);
+		}
 		messages.add(msg);
 
 	}
